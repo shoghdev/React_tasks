@@ -30,6 +30,14 @@ export default function App(){
     setPeople(temp)
   }
 
+
+  const handleRemove = (id) => {
+    let temp = [...people]
+    let index = temp.findIndex(x => x.id == id)
+    temp.splice(index, 1)
+    setPeople(temp)
+  }
+
   return <>
     <h1>Barev {count}</h1>
     <button onClick={() => setCount(count + 1)}> level up</button>
@@ -39,7 +47,8 @@ export default function App(){
         <strong>{item.salary} AMD</strong>
         <button onClick={() => handleSalaryUp(item.id) }>salary up</button>
         <button onClick={() => handleSalaryDown(item.id) }>salary down</button>
+        <button onClick={() => handleRemove(item.id)}> remove</button> 
       </div>)
-    }   
+    }  
   </>
 }
