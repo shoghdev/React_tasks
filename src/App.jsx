@@ -21,6 +21,15 @@ export default function App(){
     setPeople(temp)
   }
 
+  const handleSalaryDown = (id) => {
+    let temp = [...people]
+    let index = temp.findIndex(x => x.id == id)
+    if(temp[index].salary > 50_000) {
+      temp[index].salary -= 50_000
+    }
+    setPeople(temp)
+  }
+
   return <>
     <h1>Barev {count}</h1>
     <button onClick={() => setCount(count + 1)}> level up</button>
@@ -29,6 +38,7 @@ export default function App(){
         <p> {item.name} {item.surname}</p>
         <strong>{item.salary} AMD</strong>
         <button onClick={() => handleSalaryUp(item.id) }>salary up</button>
+        <button onClick={() => handleSalaryDown(item.id) }>salary down</button>
       </div>)
     }   
   </>
