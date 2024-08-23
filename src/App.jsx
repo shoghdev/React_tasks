@@ -45,9 +45,9 @@ export default function App(){
       people.map(item => <div key={item.id}>
         <p> {item.name} {item.surname}</p>
         <strong>{item.salary} AMD</strong>
-        <button onClick={() => handleSalaryUp(item.id) }>salary up</button>
-        <button onClick={() => handleSalaryDown(item.id) }>salary down</button>
-        <button onClick={() => handleRemove(item.id)}> remove</button> 
+        <button onClick={() => handleSalaryUp(item.id) }> salary up </button>
+        <button onClick={() => handleSalaryDown(item.id) }> salary down </button>
+        <button onClick={() => handleRemove(item.id)}> remove </button> 
       </div>)
     }  
   </>
