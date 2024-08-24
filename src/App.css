@@ -26,3 +26,9 @@ table,th,td,th {
 th,td{
   padding: 5px 15px;
 }
+
+.actionBtn {
+  border: 1px solid gray;
+  padding: 4px 8px;
+  margin-left: 5px;
+}

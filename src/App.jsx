@@ -26,6 +26,26 @@ function App() {
     }
   }
 
+  const increaseCount = item => {
+    if(item) {
+      item.count++
+      setBasket([...basket])
+    }
+  }
+
+  const decreaseCount = item => {
+    if(item && item.count > 1) {
+      item.count--
+      setBasket([...basket])
+    }
+
+  }
+
+  const removeItem = item => {
+    const items = basket.filter((i)=> item.id != i.id)
+    setBasket([...items])
+  }
+
   return (
     <>
       <h1>Online shop</h1>
@@ -63,6 +83,11 @@ function App() {
                     <td>{item.price}</td>
                     <td>{item.count}</td>
                     <td>{item.count * item.price}</td>
+                    <td>
+                      <button onClick={()=>increaseCount(item)} className='actionBtn'>+</button>
+                      <button onClick={()=>decreaseCount(item)} className='actionBtn'>-</button>
+                      <button onClick={()=>removeItem(item)} className='actionBtn'>x</button>
+                    </td>
                   </tr>)
                 }
               </tbody>
