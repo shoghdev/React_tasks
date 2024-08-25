@@ -1,4 +1,6 @@
-export const Basket = ({cart})=> {
+import { BasketItem } from "./BasketItem"
+
+export const Basket = ({cart, increaseCount, decreaseCount, removeItem})=> {
     return <div className="col-md-5">
         <table className="table table-dark table-bordered">
             <thead>
@@ -11,7 +13,13 @@ export const Basket = ({cart})=> {
                 </tr>
             </thead>
             <tbody>
-
+            {
+                cart.map(elm => <BasketItem key={elm.id} 
+                                            increaseCount = {increaseCount} 
+                                            decreaseCount = {decreaseCount}
+                                            removeItem = {removeItem}
+                                            {...elm}/>)
+            }
             </tbody>
         </table>
     </div>

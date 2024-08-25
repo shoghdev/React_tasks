@@ -16,9 +16,44 @@ export default function App() {
 
   const moveToCart = id => {
     let found = products.find(x =>x.id === id )
-    setBasket = [...basket,{...found}]
-  }
+    if(found) {
+      const item = basket.find(item=>item.id === found.id)
+      if(item) {
+        found.count++
+        setBasket([...basket])
+      } else {
+        found.count = 1
+        setBasket([...basket, found])
+      }
+    }
+}
 
+const increaseCount = id => {
+  const item = basket.find(i=>i.id === id)
+      if(item) {
+        item.count++
+        setBasket([...basket])
+      } else {
+        item.count = 1
+        setBasket([...basket, item])
+      }
+
+}
+const decreaseCount = id => {
+  const item = basket.find(i=>i.id === id)
+      if(item && item.count > 1) {
+        item.count--
+        setBasket([...basket])
+      }
+  
+}
+
+const removeItem = id => {
+  const items = basket.filter((i)=> id != i.id)
+  setBasket([...items])
+  
+}
+  
   return <>
     <h1>Online shop</h1>
     <div className='row'>
@@ -27,7 +62,10 @@ export default function App() {
           onMove = {moveToCart}
         />
         <Basket
-          cart = {Basket}
+          cart = {basket}
+          increaseCount = {increaseCount}
+          decreaseCount = {decreaseCount}
+          removeItem = {removeItem}
         />
     </div>
   </>
