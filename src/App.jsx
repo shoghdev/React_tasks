@@ -1,35 +1,34 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { AddUser } from './components/AddUser'
+import { UserList } from './components/UserList'
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [users, setUsers] = useState([
+    {id:101, name:"Tigran", age:24, salary:300000},
+    {id:102, name:"Anna", age:26, salary:420000},
+    {id:103, name:"Narek", age:25, salary:560000},
+    {id:104, name:"Hayk", age:30, salary:240000},
+    {id:105, name:"Lusine", age:19, salary:270000},
+    {id:106, name:"David", age:27, salary:270000}
+  ])
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  const handleSalaryUp = id => {
+    setUsers(users.map(user =>
+      user.id != id ? user : {...user, salary:user.salary +72000}
+    ))
+  }
+
+  const addUser = (user)=> {
+    setUsers([...users, {...user, id:101+users.length}])
+  }
+  return <>
+    <AddUser
+      onAdd = {addUser}
+    />
+    <UserList
+      users = {users}
+      handleSalaryUp = {handleSalaryUp}
+    />
+  </>
 }
-
-export default App
