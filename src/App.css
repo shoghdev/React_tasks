@@ -40,3 +40,28 @@
 .read-the-docs {
   color: #888;
 }
+
+
+.todo {
+  background-color: yellowgreen;
+  padding: 10px 30px;
+  margin: 24px;
+}
+
+.todo button {
+  padding: 5px 10px;
+  margin-left: 20px;
+  outline: none;
+}
+
+.done {
+  opacity:  .7;
+}
+
+.done p {
+  text-decoration: line-through;
+}
+
+.btn-active {
+  background-color: orangered;
+}
