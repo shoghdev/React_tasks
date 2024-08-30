@@ -40,3 +40,9 @@
 .read-the-docs {
   color: #888;
 }
+
+.total {
+  color: black;
+  font-size: 24px;
+  font-weight: 500;
+}
