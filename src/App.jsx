@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import { Basket } from './components/Basket'
 import { ProductList } from './components/ProductList'
@@ -27,8 +27,6 @@ export default function App() {
         found.count = 1
         setBasket([...basket, found])
       }
-
-      setTotal(total + found.price)
     }
 }
 
@@ -42,8 +40,6 @@ const increaseCount = id => {
         setBasket([...basket, item])
       }
 
-      setTotal(total + item.price)
-
 }
 const decreaseCount = id => {
   const item = basket.find(i=>i.id === id)
@@ -51,8 +47,6 @@ const decreaseCount = id => {
         item.count--
         setBasket([...basket])
       }
-
-      setTotal(total - item.price)
   
 }
 
@@ -60,8 +54,14 @@ const removeItem = id => {
   const items = basket.filter((i)=> id != i.id)
   setBasket([...items])
   const item = basket.find(i=>i.id === id)
-  setTotal(total - item.count * item.price)
 }
+
+useEffect(() => {
+  const subTotal = basket.map(elm => elm.price * elm.count)
+  let arr=subTotal.reduce((a,b)=>a+b,0)
+  setTotal(arr)
+  
+},[basket])
   
   return <>
     <h1>Online shop</h1>

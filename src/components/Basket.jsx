@@ -2,9 +2,6 @@ import { useEffect } from "react"
 import { BasketItem } from "./BasketItem"
 
 export const Basket = ({cart, total, increaseCount, decreaseCount, removeItem})=> {
-    useEffect (()=> {
-        console.log(total)
-    },[total])
     return <div className="col-md-5">
         <table className="table table-dark table-bordered">
             <thead>
