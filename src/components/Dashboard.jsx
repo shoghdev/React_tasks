@@ -19,11 +19,16 @@ export const Dashboard = () => {
         .then(response => {
             setTasks(response.data)
         })
-    }, [])
+    }, [tasks])
+
+    const changeStat = (id, newStatus) => {
+        setTasks(tasks.map(task => task.id === id ? { ...task, newStatus } : task))
+    }
+
 
     return <div className="dashboard">
         <div className="row">
-            <TaskList tasks={tasks} onDelete = {handleDelet}/>
+            <TaskList tasks={tasks} onDelete = {handleDelet} onChangeStat={changeStat}/>
             <AddTask onAdd = {addTask}/>
         </div>
         <Stats/>

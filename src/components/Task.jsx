@@ -1,6 +1,6 @@
 import axios from "axios"
 
-export const Task = ({task, onDelete}) => {
+export const Task = ({task, onDelete, onChangeStat}) => {
     const handleDelet = () => {
         axios
         .delete("http://localhost:3004/tasks/"+task.id)
@@ -8,6 +8,15 @@ export const Task = ({task, onDelete}) => {
             onDelete(response.data.id)
         })
     }
+
+    const handleStatUpdate = (id, status) => {
+        axios
+        .patch("http://localhost:3004/tasks/"+id, {status})
+        .then(response => {
+            onChangeStat(response.data.id, response.data.status)
+        })
+    }   
+
     return <div>
         <p>{task.text}</p>
         <small>status: {task.status}</small>
@@ -19,7 +28,7 @@ export const Task = ({task, onDelete}) => {
             :<img src="https://cdn2.iconfinder.com/data/icons/internet-download-manager-1/64/11_Completed_check_tick_verified_approved-1024.png"/>
         }
         <select value={task.status}
-            onChange={event => ontimeupdate(task.id, event.target.value)}>
+            onChange={event => handleStatUpdate(task.id, event.target.value)}>
             <option >in progress</option>
             <option>unstarted</option>
             <option>completed</option>
