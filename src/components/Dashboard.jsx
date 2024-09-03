@@ -25,12 +25,11 @@ export const Dashboard = () => {
         setTasks(tasks.map(task => task.id === id ? { ...task, newStatus } : task))
     }
 
-
     return <div className="dashboard">
         <div className="row">
             <TaskList tasks={tasks} onDelete = {handleDelet} onChangeStat={changeStat}/>
             <AddTask onAdd = {addTask}/>
         </div>
-        <Stats/>
+        <Stats tasks={tasks}/>
     </div>
 }
