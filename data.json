@@ -1,0 +1,29 @@
+{
+  "tasks": [
+    {
+      "id": "101",
+      "text": "change css styles",
+      "status": "in progress"
+    },
+    {
+      "id": "102",
+      "text": "bug fix on modal",
+      "status": "completed"
+    },
+    {
+      "id": "103",
+      "text": "add observer design pattern to model",
+      "status": "unstarted"
+    },
+    {
+      "id": "104",
+      "text": "responsivness of main page",
+      "status": "in progress"
+    },
+    {
+      "id": "105",
+      "text": "use carousel lib for gallery",
+      "status": "completed"
+    }
+  ]
+}
