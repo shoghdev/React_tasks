@@ -40,3 +40,25 @@
 .read-the-docs {
   color: #888;
 }
+
+table {
+  border-collapse:collaps;
+  width: 1000px;
+}
+
+table,tr,th,td {
+  border: 1px solid gray;
+}
+
+button {
+  margin: 15px 10px;
+
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  align-items: center;
+  justify-content: center;
+}

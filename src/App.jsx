@@ -1,33 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import {Dashboard} from './components/Dashboard'
 import './App.css'
+import { useState } from 'react'
+import { UserContext } from './context'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [users,setUsers] =useState([
+    {id:100, name:"John", age: 45, salary:450000},
+    {id:101, name:"David", age: 25, salary:250000},
+    {id:102, name:"Ani", age: 33, salary:400000},
+    {id:103, name:"Alla", age: 48, salary:350000},
+  ])
+  const removeUser = id => {
+    setUsers(users.filter(user => user.id != id))
+  }
 
+  const handleAdd = user => {
+    setUsers([...users, {...user, id:100+users.length}])
+  }
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <UserContext.Provider value={{users, onRemove:removeUser, onAdd: handleAdd}}>
+      <Dashboard />
+    </UserContext.Provider>
     </>
   )
 }
