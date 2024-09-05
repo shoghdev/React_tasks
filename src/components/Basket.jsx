@@ -1,6 +1,9 @@
+import { useContext } from "react"
 import { BasketItem } from "./BasketItem"
+import { ProductContext } from "../context"
 
-export const Basket = ({cart, increaseCount, decreaseCount, removeItem})=> {
+export const Basket = ()=> {
+    const {basket} = useContext(ProductContext)
     return <div className="col-md-5">
         <table className="table table-dark table-bordered">
             <thead>
@@ -14,11 +17,7 @@ export const Basket = ({cart, increaseCount, decreaseCount, removeItem})=> {
             </thead>
             <tbody>
             {
-                cart.map(elm => <BasketItem key={elm.id} 
-                                            increaseCount = {increaseCount} 
-                                            decreaseCount = {decreaseCount}
-                                            removeItem = {removeItem}
-                                            {...elm}/>)
+                basket.map(elm => <BasketItem key={elm.id} {...elm}/>)
             }
             </tbody>
         </table>

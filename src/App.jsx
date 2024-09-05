@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
-import { Basket } from './components/Basket'
-import { ProductList } from './components/ProductList'
+import { ProductContext } from './context'
+import { Dashboard } from './components/Dashboard'
 export default function App() {
   const [basket, setBasket] = useState([])
   const [products, setProducts] = useState([
@@ -55,18 +55,14 @@ const removeItem = id => {
 }
   
   return <>
-    <h1>Online shop</h1>
-    <div className='row'>
-        <ProductList 
-          items = {products}
-          onMove = {moveToCart}
-        />
-        <Basket
-          cart = {basket}
-          increaseCount = {increaseCount}
-          decreaseCount = {decreaseCount}
-          removeItem = {removeItem}
-        />
-    </div>
+    <ProductContext.Provider 
+                    value={{products, basket,
+                    onMove:moveToCart,
+                    onCountUp:increaseCount, 
+                    onCountDown:decreaseCount, 
+                    onRemove:removeItem
+                    }}>
+        <Dashboard />
+    </ProductContext.Provider>
   </>
 }
